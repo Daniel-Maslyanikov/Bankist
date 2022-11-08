@@ -1,0 +1,2 @@
+# Bankist
+JS pet-project
