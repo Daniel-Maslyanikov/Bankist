@@ -64,21 +64,33 @@ const inputClosePin = document.querySelector('.form__input--pin');
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 
-const displayMovements = function(movements) {
-	containerMovements.innerHTML = '';
+const displayMovements = function (movements) {
+  containerMovements.innerHTML = '';
 
-	movements.forEach(function(mov, i) {
-		const type = mov > 0 ? 'deposit' : 'withdrawal'
+  movements.forEach(function (mov, i) {
+    const type = mov > 0 ? 'deposit' : 'withdrawal';
 
-		const html = `
+    const html = `
 			<div class="movements__row">
 				<div class="movements__type movements__type--${type}">${i + 1} ${type} </div>
 				<div class="movements__value">${mov}</div>
 			</div>
 		`;
 
-		containerMovements.insertAdjacentHTML('afterbegin', html)
-	})
-}
+    containerMovements.insertAdjacentHTML('afterbegin', html);
+  });
+};
 
-displayMovements(account1.movements)
+displayMovements(account1.movements);
+
+const createUsernames = (accs) => {
+  accs.forEach(function (acc) {
+    acc.username = acc.owner
+      .toLowerCase()
+      .split(' ')
+      .map((name) => name[0])
+      .join('');
+  });
+};
+
+createUsernames(accounts);
